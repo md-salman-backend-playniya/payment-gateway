@@ -4,7 +4,15 @@ import {
   verifyPayment,
   webhookVerify,
 } from "../controllers/payment.controller.js";
+
 import { auth } from "../middlewares/auth.js";
+
+import {
+  fundAccount,
+  payout,
+  contact,
+} from "../controllers/payout.controller.js";
+
 const router = express.Router();
 
 router.post("/verify", auth, verifyPayment);
@@ -15,14 +23,8 @@ router.post(
   webhookVerify
 );
 
-// payout router
-
-// create contact
-// create fund account
-// payout
-
-// router.post("/payout", auth, payout);
-// router.post("/contact", auth, contact);
-// router.post("/fund-account", auth, fundAccount);
+router.post("/payout", payout);
+router.post("/contact", contact);
+router.post("/fund-account", fundAccount);
 
 export { router };

@@ -13,7 +13,6 @@ import { router } from "./routes/payment.routes.js";
 dotenv.config();
 
 const app = express();
-// app.use(express.json());
 
 app.use((req, res, next) => {
   if (req.originalUrl === "/payment/webhook-verify") {
@@ -24,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use(morgan("dev"));
+
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN || "*",
