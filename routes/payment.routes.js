@@ -23,8 +23,8 @@ router.post(
   webhookVerify
 );
 
-router.post("/payout", payout);
-router.post("/contact", contact);
-router.post("/fund-account", fundAccount);
+router.post("/contact", auth, contact);
+router.post("/fund-account", auth, fundAccount);
+router.post("/payout", auth, payout);
 
 export { router };

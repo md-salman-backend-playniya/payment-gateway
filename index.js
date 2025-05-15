@@ -10,9 +10,12 @@ import morgan from "morgan";
 import cors from "cors";
 import express from "express";
 import { router } from "./routes/payment.routes.js";
+import { connectDb } from "./config/db.config.js";
 dotenv.config();
 
 const app = express();
+
+connectDb();
 
 app.use((req, res, next) => {
   if (req.originalUrl === "/payment/webhook-verify") {

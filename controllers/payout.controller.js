@@ -84,10 +84,20 @@ async function contact(req, res) {
     //TODO: update DB
     console.log(`contact created🟢 ${contact}`);
 
-    return res.status(201).json({ success: true, contact });
+    return res.status(201).json({
+      success: true,
+      message: "Contact created successfully",
+      contact,
+    });
   } catch (error) {
     console.error("🔴Error creating Razorpay contact:", error);
-    return res.status(500).json({ success: false, error: error.message });
+    return res
+      .status(500)
+      .json({
+        success: false,
+        message: "Something went wrong while creating contact",
+        error: error.message,
+      });
   }
 }
 
@@ -118,7 +128,7 @@ async function fundAccount(req, res) {
     const fundAccount = await createFundAccount(fundAccountData);
     console.log(`fund account created🟢 ${fundAccount.id}`);
     // TODO: update DB
-    return res.status(201).json({ success: true, fund_account: fundAccount });
+    return res.status(201).json({ success: true, fa_id: fundAccount });
   } catch (error) {
     console.error("🔴Error creating fund account:", error);
     return res.status(500).json({ success: false, error: error.message });
